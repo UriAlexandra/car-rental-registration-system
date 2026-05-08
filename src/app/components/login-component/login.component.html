@@ -1,0 +1,35 @@
+<div class="container">
+    <div style="width: 100%; max-width: 460px;">
+        <mat-card class="card">
+            <mat-card-content>
+                <h2 class="loginTitle">Bejelentkezés</h2>
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form">
+                    <mat-form-field>
+                        <mat-label>Felhasználónév</mat-label>
+                        <input matInput type="text" formControlName="username">
+                    </mat-form-field>
+                    
+                    <mat-form-field>
+                        <mat-label>Jelszó</mat-label>
+                        <input matInput type="password" formControlName="password">
+                    </mat-form-field>
+                    
+                    <div id="wrongDatas"></div>
+                    
+                    <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid" class="submit">
+                        Bejelentkezés
+                    </button>
+                </form>
+            </mat-card-content>
+        </mat-card>
+
+        <mat-card class="card" style="margin-top: 20px;">
+            <mat-card-content>
+                <h3 class="title" style="font-size: 18px;">Még nincs fiókod?</h3>
+                <button mat-raised-button class="reg" routerLink="/registration">
+                    Regisztráció
+                </button>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

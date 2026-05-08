@@ -1,0 +1,50 @@
+<div class="container">
+
+    <mat-card class="card">
+
+        <h2 class="title">Regisztráció</h2>
+
+        <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" class="form" novalidate>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Név</mat-label>
+                <input matInput formControlName="name">
+                <mat-error *ngIf="registrationForm.get('name')?.hasError('required')">Név megadása kötelező.</mat-error>
+                <mat-error *ngIf="registrationForm.get('name')?.hasError('minlength')">Minimum 3 karakter.</mat-error>
+                <mat-error *ngIf="registrationForm.get('name')?.hasError('pattern')">Csak betűk és szóközök megengedettek.</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Felhasználónév</mat-label>
+                <input matInput formControlName="username">
+                <mat-error *ngIf="registrationForm.get('username')?.hasError('required')">Felhasználónév megadása kötelező.</mat-error>
+                <mat-error *ngIf="registrationForm.get('username')?.hasError('minlength')">Minimum 3 karakter.</mat-error>
+                <mat-error *ngIf="registrationForm.get('username')?.hasError('pattern')">Csak betűk és számok megengedettek.</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Jelszó</mat-label>
+                <input matInput type="password" formControlName="password">
+                <mat-error *ngIf="registrationForm.get('password')?.hasError('required')">Jelszó megadása kötelező.</mat-error>
+                <mat-error *ngIf="registrationForm.get('password')?.hasError('minlength')">Minimum 6 karakter.</mat-error>
+                <mat-error *ngIf="registrationForm.get('password')?.hasError('pattern')">Csak betűk és számok megengedettek.</mat-error>
+            </mat-form-field>
+
+            <div class="error" *ngIf="submitError" style="color: #e74c3c; text-align: center; font-size: 14px; font-weight: 600; margin-bottom: 10px;">
+                {{ submitError }}
+            </div>
+
+            <button mat-raised-button class="submit" type="submit" [disabled]="registrationForm.invalid">
+                Regisztráció
+            </button>
+
+            <div class="bottom-link">
+                Már van fiókod?
+                <a routerLink="/login">Vissza a bejelentkezéshez</a>
+            </div>
+
+        </form>
+
+    </mat-card>
+
+</div>

@@ -1,1 +1,173 @@
-/* You can add global styles to this file, and also import other style files */
+/* FŐ KONTÉNER ÉS HÁTTÉR (Letisztult, fémes/aszfalt hatású világos háttér) */
+.container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #cfd9df, #e2ebf0);
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* FELSŐ MENÜSÁV (Elegáns, tapadó navigáció) */
+.menuCard {
+    width: 100%;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.95);
+    border-bottom: 3px solid #1976D2; /* Megbízhatóságot sugárzó "Corporate Blue" sáv */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.logout {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+/* KÁRTYA (Műszerfal stílusú, letisztult üveg-hatás) */
+.card {
+    width: 100%;
+    max-width: 460px; /* Kicsit szélesebb, hogy a járműadatok kényelmesen elférjenek */
+    margin: 40px auto;
+    padding: 35px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(12px);
+
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 15px 35px rgba(44, 62, 80, 0.15);
+    text-align: left;
+}
+
+/* CÍMEK (Dinamikus, autómárkák logójára emlékeztető tipográfia) */
+.title,.loginTitle {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: #2c3e50; /* Sötét aszfaltszürke */
+    text-align: center;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* GOMBOK (Sportos, határozott interakció) */
+button {
+    width: 100%;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 14px 20px;
+    border-radius: 12px;
+    border: none;
+    
+    background: linear-gradient(135deg, #1976D2, #1565C0);
+    color: white;
+    
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(25, 118, 210, 0.3);
+    background: linear-gradient(135deg, #1e88e5, #1976D2);
+}
+
+button:active {
+    transform: translateY(1px);
+    box-shadow: 0 4px 10px rgba(25, 118, 210, 0.2);
+}
+
+.submit {
+    font-weight: 700;
+    margin-top: 10px;
+}
+
+/* MÁSODLAGOS GOMBOK (pl. Menügomb vagy Regisztráció) */
+.menuBtn,.reg {
+    width: auto; /* Ez a sor akadályozza meg, hogy végigérjen a képernyőn */
+    background: transparent;
+    color: #2c3e50;
+    border: 2px solid #cfd9df;
+    box-shadow: none;
+}
+
+.menuBtn:hover,.reg:hover {
+    background: #f0f2f5;
+    border-color: #1976D2;
+    color: #1976D2;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* INPUT MEZŐK (Angular Material) */
+mat-form-field {
+    width: 100%;
+}
+
+/* TARTALOM SOROK (Autó paramétereinek, pl. lóerő, kilométer listázásához) */
+.content {
+    padding: 12px 0;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.content:last-child {
+    border-bottom: none;
+}
+
+/* Címke (pl. "Rendszám:") */
+.type {
+    font-weight: 600;
+    color: #7f8c8d;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+}
+
+/* Érték (pl. "ABC-123") */
+.value {
+    font-weight: 700;
+    color: #2c3e50;
+    font-size: 15px;
+}
+
+/* HIBASZÖVEG ("Check Engine" figyelmeztető piros) */
+#wrongDatas, mat-error {
+    color: #e74c3c; 
+    font-size: 13.5px;
+    font-weight: 600;
+    text-align: center;
+    margin-top: -5px;
+}
+
+/* ALSÓ LINK BLOKK (Elfelejtett jelszó, vissza gomb) */
+.bottom-link {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 14.5px;
+    color: #7f8c8d;
+}
+
+.bottom-link a {
+    color: #1976D2;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.bottom-link a:hover {
+    color: #0d47a1;
+    text-decoration: underline;
+}
