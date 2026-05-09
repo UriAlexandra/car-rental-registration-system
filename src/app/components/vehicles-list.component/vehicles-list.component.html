@@ -1,0 +1,72 @@
+<mat-card class="menuCard">
+    <mat-card-content style="display: flex; justify-content: space-between; width: 100%; align-items: center;">
+        <div style="font-weight: 800; font-size: 20px; color: #1976D2; letter-spacing: 1px;">AUTÓKÖLCSÖNZŐ</div>
+        <div>
+            <button mat-raised-button routerLink="/vehicle-create" class="submit" style="margin-right: 15px; width: auto;">
+                Új jármű felvitele
+            </button>
+            <button mat-raised-button (click)="logout()" class="menuBtn">Kijelentkezés</button>
+        </div>
+    </mat-card-content>
+</mat-card>
+
+<div class="container" style="align-items: flex-start; padding-top: 40px;">
+    <div style="width: 100%; max-width: 960px;">
+        <h2 class="title" style="text-align: left; margin-bottom: 20px;">Készletnyilvántartás</h2>
+
+        <div *ngIf="loadError" style="color: #e74c3c; font-weight: 600;">{{ loadError }}</div>
+
+        <div *ngIf="!loadError && vehicles.length === 0"
+             style="text-align: center; color: #7f8c8d; font-weight: 600; padding: 40px 0;">
+            Még nincsenek járművek a rendszerben.
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+            <mat-card class="card" *ngFor="let vehicle of vehicles"
+                      style="width: calc(50% - 10px); margin: 0; padding: 25px; box-sizing: border-box;">
+
+                <!-- Fejléc: cím + státusz badge -->
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+                    <h3 style="margin: 0; color: #2c3e50; font-size: 18px;">
+                        {{ vehicle.manufacturer }} {{ vehicle.type }}
+                    </h3>
+                    <!-- ✅ Státusz badge: zöld = szabad, narancs = kikölcsönzött, piros = selejtezett -->
+                    <span [style.background]="vehicle.status === 'AVAILABLE' ? '#27ae60' :
+                                              vehicle.status === 'RENTED'    ? '#e67e22' : '#c0392b'"
+                          style="color: white; font-size: 11px; font-weight: 700; padding: 3px 10px;
+                                 border-radius: 20px; text-transform: uppercase; white-space: nowrap;">
+                        {{ vehicle.status === 'AVAILABLE' ? 'Szabad' :
+                           vehicle.status === 'RENTED'    ? 'Kikölcsönzött' : 'Selejtezett' }}
+                    </span>
+                </div>
+
+                <div style="border-top: 2px solid #e0e0e0; padding-top: 10px;">
+                    <div class="content">
+                        <span class="type">Rendszám:</span>
+                        <span class="value">{{ vehicle.licensePlate }}</span>
+                    </div>
+                    <div class="content">
+                        <span class="type">Kategória:</span>
+                        <span class="value">{{ vehicle.vehicleCategory === 'CAR' ? 'Autó' : 'Vízi jármű' }}</span>
+                    </div>
+                    <div class="content">
+                        <span class="type">Napi díj:</span>
+                        <span class="value">{{ vehicle.dailyRentalFee | number }} Ft</span>
+                    </div>
+                    <div class="content">
+                        <span class="type">Km / Üzemóra díj:</span>
+                        <span class="value">{{ vehicle.perKmFee | number }} Ft</span>
+                    </div>
+                </div>
+
+                <!-- ✅ Szerkesztés gomb – vehicle-edit/:id útvonalra navigál -->
+                <button mat-raised-button class="menuBtn"
+                        [routerLink]="['/vehicle-edit', vehicle._id]"
+                        style="margin-top: 16px; width: 100%;">
+                    Szerkesztés
+                </button>
+
+            </mat-card>
+        </div>
+    </div>
+</div>

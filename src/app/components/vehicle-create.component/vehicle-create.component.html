@@ -1,0 +1,80 @@
+<mat-card class="menuCard">
+    <mat-card-content style="display: flex; justify-content: space-between; width: 100%; align-items: center;">
+        <div style="font-weight: 800; font-size: 20px; color: #1976D2; letter-spacing: 1px;">Autókölcsönző</div>
+        <button mat-raised-button routerLink="/vehicles" class="menuBtn" style="width: auto;">Vissza a listához</button>
+    </mat-card-content>
+</mat-card>
+
+<div class="container">
+    <mat-card class="card" style="max-width: 600px;">
+        <h2 class="title">Új jármű rögzítése</h2>
+        
+        <form [formGroup]="createVehicleForm" (ngSubmit)="onSubmit()" class="form">
+            
+            <mat-form-field appearance="outline">
+                <mat-label>Kategória</mat-label>
+                <mat-select formControlName="vehicleCategory">
+                    <mat-option value="CAR">Autó</mat-option>
+                    <mat-option value="WATERCRAFT">Vízi jármű (Hajó)</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <div style="display: flex; gap: 15px;">
+                <mat-form-field appearance="outline" style="flex: 1;">
+                    <mat-label>Gyártó</mat-label>
+                    <input matInput type="text" formControlName="manufacturer">
+                    <mat-error *ngIf="myForm['manufacturer'].hasError('required')">Kötelező mező.</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" style="flex: 1;">
+                    <mat-label>Típus</mat-label>
+                    <input matInput type="text" formControlName="type">
+                    <mat-error *ngIf="myForm['type'].hasError('required')">Kötelező mező.</mat-error>
+                </mat-form-field>
+            </div>
+
+            <div style="display: flex; gap: 15px;">
+                <mat-form-field appearance="outline" style="flex: 1;">
+                    <mat-label>Rendszám / Lajstromszám</mat-label>
+                    <input matInput type="text" formControlName="licensePlate">
+                    <mat-error *ngIf="myForm['licensePlate'].hasError('required')">Kötelező.</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" style="flex: 1;">
+                    <mat-label>Belső sorszám</mat-label>
+                    <input matInput type="number" formControlName="serialNumber">
+                    <mat-error *ngIf="myForm['serialNumber'].hasError('required')">Kötelező szám.</mat-error>
+                </mat-form-field>
+            </div>
+            
+            <mat-form-field appearance="outline">
+                <mat-label>Alvázszám</mat-label>
+                <input matInput type="text" formControlName="chassisNumber">
+                <mat-error *ngIf="myForm['chassisNumber'].hasError('required')">Kötelező mező.</mat-error>
+            </mat-form-field>
+
+            <h3 style="color: #2c3e50; font-size: 16px; margin-top: 10px;">Kölcsönzési díjak (Szám formátum!)</h3>
+            <div style="display: flex; gap: 15px;">
+                <mat-form-field appearance="outline" style="flex: 1;">
+                    <mat-label>Napi bérleti díj (Ft)</mat-label>
+                    <input matInput type="number" formControlName="dailyRentalFee">
+                    <mat-error *ngIf="myForm['dailyRentalFee'].hasError('required')">Kötelező.</mat-error>
+                    <mat-error *ngIf="myForm['dailyRentalFee'].hasError('min')">Pozitív szám kell.</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" style="flex: 1;">
+                    <mat-label>Futott Km/Üzemóra díj (Ft)</mat-label>
+                    <input matInput type="number" formControlName="perKmFee">
+                    <mat-error *ngIf="myForm['perKmFee'].hasError('required')">Kötelező.</mat-error>
+                    <mat-error *ngIf="myForm['perKmFee'].hasError('min')">Pozitív szám kell.</mat-error>
+                </mat-form-field>
+            </div>
+
+            <div *ngIf="submitError" id="wrongDatas" style="margin-bottom: 10px;">{{ submitError }}</div>
+
+            <button mat-raised-button color="primary" type="submit" class="submit" [disabled]="createVehicleForm.invalid">
+                Jármű mentése
+            </button>
+        </form>
+    </mat-card>
+</div>
