@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
       },
       error: (err) => {
         console.log(err);
-        // Helytelen adatok esetén hiba kiírása
+        // Helytelen adatok->hiba kiírása
         this.submitError = err.message ||
           'Hibás felhasználónév vagy jelszó!';
       }
